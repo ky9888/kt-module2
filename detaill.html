@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div>
+      <input type="file" >
+    <div id="detail">
+      <div id="idd"></div>
+      <div id="title"></div>
+      <div id="slug"></div>
+      <div id="category_id"></div>
+      <div id="published_at"></div>
+      <div id="system"></div>
+      <div id="transliterated"></div>
+      <div id="category"></div>
+      <div id="content"></div>
+    </div>
+    <script>
+      $("document").ready(() => {
+        $.get(
+          "https://844deb07bd27403da728d3d434ab3268.api.mockbin.io/",
+          (data, textStatus, xhr) => {
+            if (xhr.status === 200) {
+              console.log(data);
+              showdetail(data);
+            }
+          }
+        );
+        // function showData(arr) {
+        //   const list = document.getElementById("detail");
+        //   const temlate = `
+        // <div class="flex">
+                    
+        //           </div>`
+        // ;
+        function showdetail(element) {
+          const idd = document.getElementById("idd");
+          idd.innerHTML = element.id
+          const title = document.getElementById("title");
+          title.innerHTML = element.title
+          const slug = document.getElementById("slug");
+          slug .innerHTML = element.slug 
+          const category_id = document.getElementById("category_id");
+          category_id.innerHTML = element.category_id
+          const published_at = document.getElementById("published_at ");
+          published_at.innerText = element.published_at
+          const system = document.getElementById("system");
+          system.innerText = element.system
+          const transliterated = document.getElementById("transliterated");
+          transliterated.innerText = element.transliterated
+          const category = document.getElementById("category");
+          category.innerText = element.category
+          const content = document.getElementById("content");
+          content.innerText = element.content
+        }
+        }
+      );
+    </script>
+    </div>
+  </body>
+</html>

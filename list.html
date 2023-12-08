@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div>
+      <input type="file" >
+    <div id="list"></div>
+    <script>
+      $("document").ready(() => {
+        $.get(
+          "https://8c22c204b3474980b549d26caf5ab0eb.api.mockbin.io/",
+          (data, textStatus, xhr) => {
+            if (xhr.status === 200) {
+              console.log(data);
+              showData(data);
+            }
+          }
+        );
+        function showData(arr) {
+          const list = document.getElementById("list");
+          const temlate = `
+        <div class="flex">
+                    <div class="flex" >
+                      <div>
+                        <img src="https://images.viblo.asia/avatar/d3fbbb69-55f2-4530-99de-de866b71e9d8.png" alt="" />
+                      </div>
+                    </div>
+                    <div>
+                      <div>
+                        <a href="">"$title"</a>
+                        <a href="">"$slug"</a
+                        >
+                        <div>
+                          <a href="">"$category_id"</a>
+                          <a href="">"$category_id"</a>
+                        </div>
+                        <p class="content">
+                          $published_at
+                        </p>
+                        <div class="post-meta d-flex">
+                          <a href="#">"$ystem"</a>
+                          <a href="#">"$transliteratedt"</a>
+                          <a href="#">"$category"</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>`
+        ;
+                  arr.forEach((element) => {
+            let newElement = temlate
+              .replace("$image", element.image)
+              .replace("$title", element.title)
+              .replace("$slug", element.slug)
+              .replace("$category_id", element.category_id)
+              .replace("$published_at", element.published_at)
+              .replace("$system", element.system)
+              .replace("$transliteratedt", element.transliteratedt)
+              .replace("$category", element.category)
+              
+            const div = document.createElement("div");
+            div.innerHTML = newElement;
+            list.appendChild(div);
+          });
+        }
+      });
+    </script>
+    
+
+
+    
+
+  </body>
+</html>
